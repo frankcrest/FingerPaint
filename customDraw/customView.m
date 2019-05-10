@@ -16,6 +16,10 @@
 @property(nonatomic, strong) UIPanGestureRecognizer* panGesture;
 @property(nonatomic,strong) NSMutableArray* velocityArray;
 @property(nonatomic, assign) CGPoint velocity;
+@property(nonatomic, strong) UITapGestureRecognizer* tapGesture;
+@property(nonatomic, strong) NSNotificationCenter* notificationCenter;
+@property (nonatomic,weak) UITextField* myTextField;
+@property (nonatomic, strong) UITapGestureRecognizer* dissmissKeyTapGesture;
 
 @end
 
@@ -39,8 +43,14 @@
         _colorArray = [[NSMutableArray alloc]init];
         _velocityArray = [[NSMutableArray alloc]init];
         self.backgroundColor = [UIColor magentaColor];
+        [self.notificationCenter addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+        [self.notificationCenter addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     }
     return self;
+}
+
+-(NSNotificationCenter *)notificationCenter{
+    return [NSNotificationCenter defaultCenter];
 }
 
 - (void)drawRect:(CGRect)rect {
@@ -56,6 +66,10 @@
     UIPanGestureRecognizer* panGesture = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(addPoint:)];
     [self addGestureRecognizer:panGesture];
     self.panGesture = panGesture;
+    
+    UITapGestureRecognizer* tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(addTextField:)];
+    [self addGestureRecognizer:tapGesture];
+    self.tapGesture = tapGesture;
 }
 
 -(void)addPoint:(UIPanGestureRecognizer*)sender{
@@ -82,4 +96,40 @@
     }
 }
 
+-(void)addTextField:(UITapGestureRecognizer*)sender{
+    if ([self.delegate delegateTextModeisON]){
+        [self.myTextField resignFirstResponder];
+        CGPoint touchLocation = [sender locationInView:self];
+        UITextField* textField = [[UITextField alloc]initWithFrame:CGRectMake(touchLocation.x - 100, touchLocation.y, 200,50)];
+        textField.backgroundColor = [UIColor whiteColor];
+        self.myTextField = textField;
+        [self addSubview:textField];
+    } else{
+        
+    }
+}
+
+-(void)keyboardWillShow:(NSNotification*)notification{
+     [self removeGestureRecognizer:self.tapGesture];
+        UITapGestureRecognizer* tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(removeKeyBoard:)];
+        [self addGestureRecognizer:tapGesture];
+        self.dissmissKeyTapGesture = tapGesture;
+    
+}
+
+-(void)removeKeyBoard:(UITapGestureRecognizer*)sender{
+    [self endEditing:YES];
+}
+
+-(void)keyboardWillHide:(NSNotification*)notification{
+    UITapGestureRecognizer* tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(addTextField:)];
+    [self addGestureRecognizer:tapGesture];
+    self.tapGesture = tapGesture;
+}
+
+
+
+- (void) dealloc{
+    [self.notificationCenter removeObserver:self];
+}
 @end

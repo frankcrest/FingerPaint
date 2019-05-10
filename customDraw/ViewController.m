@@ -16,6 +16,8 @@
 @property (nonatomic,strong) UIColor* colorChosen;
 @property (weak, nonatomic) IBOutlet UIButton *eraserModeButton;
 @property (nonatomic, assign) BOOL eraseModeisON;
+@property (weak, nonatomic) IBOutlet UIButton *textModeButton;
+@property (nonatomic, assign) BOOL textModeisON;
 
 @end
 
@@ -32,6 +34,7 @@
     [self.containerView addGestureRecognizer:tapGestureRecog];
     
     self.eraseModeisON = NO;
+    self.textModeisON = NO;
 }
 
 - (IBAction)changeColor:(UIButton *)sender {
@@ -69,6 +72,22 @@
         return [UIColor magentaColor];
     } else{
         return nil;
+    }
+}
+- (IBAction)textModeButtonPressed:(id)sender {
+    self.textModeisON = !self.textModeisON;
+    if (self.textModeisON) {
+        [self.textModeButton setTitle:@"TextMode ON" forState:UIControlStateNormal];
+    } else{
+        [self.textModeButton setTitle:@"TextMode OFF" forState:UIControlStateNormal];
+    }
+}
+
+- (BOOL)delegateTextModeisON{
+    if (self.textModeisON) {
+        return YES;
+    } else{
+        return NO;
     }
 }
 

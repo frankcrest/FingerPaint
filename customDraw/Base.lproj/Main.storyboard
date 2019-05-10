@@ -23,7 +23,7 @@
                                 <color key="backgroundColor" red="1" green="0.2527923882" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2aM-HB-Bsp">
-                                <rect key="frame" x="195.5" y="629" width="179.5" height="30"/>
+                                <rect key="frame" x="263.5" y="629" width="119.5" height="30"/>
                                 <color key="backgroundColor" red="1" green="0.88053385419999997" blue="0.98945663549999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Change Color"/>
                                 <connections>
@@ -124,11 +124,19 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5fz-Oa-fbW">
-                                <rect key="frame" x="8" y="629" width="179.5" height="30"/>
+                                <rect key="frame" x="8" y="629" width="119.5" height="30"/>
                                 <color key="backgroundColor" red="1" green="0.88053385419999997" blue="0.98945663549999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Eraser OFF"/>
                                 <connections>
                                     <action selector="eraseModePressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rY8-oG-f5S"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bBc-F2-L0b">
+                                <rect key="frame" x="135.5" y="629" width="120" height="30"/>
+                                <color key="backgroundColor" red="1" green="0.88053385419999997" blue="0.98945663549999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="TextMode OFF"/>
+                                <connections>
+                                    <action selector="textModeButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uru-gT-EJq"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -136,19 +144,23 @@
                         <constraints>
                             <constraint firstItem="5fz-Oa-fbW" firstAttribute="top" secondItem="6vM-VP-sfo" secondAttribute="bottom" constant="8" id="4lW-kN-Bpu"/>
                             <constraint firstItem="Jyg-Do-jtf" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="6QT-3K-8pp"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="2aM-HB-Bsp" secondAttribute="trailing" id="Fgr-hS-oMj"/>
-                            <constraint firstItem="2aM-HB-Bsp" firstAttribute="top" secondItem="Jyg-Do-jtf" secondAttribute="bottom" constant="10" id="I64-v7-jQL"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="2aM-HB-Bsp" secondAttribute="bottom" constant="8" id="VX7-zz-NeY"/>
-                            <constraint firstItem="2aM-HB-Bsp" firstAttribute="top" secondItem="6vM-VP-sfo" secondAttribute="bottom" constant="8" id="X83-Kv-HiN"/>
+                            <constraint firstItem="2aM-HB-Bsp" firstAttribute="top" secondItem="Jyg-Do-jtf" secondAttribute="bottom" constant="10" id="9NW-53-1cG"/>
+                            <constraint firstItem="2aM-HB-Bsp" firstAttribute="width" secondItem="bBc-F2-L0b" secondAttribute="width" id="Kb5-Ed-7PD"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="bBc-F2-L0b" secondAttribute="bottom" constant="8" id="LUh-ax-vCQ"/>
                             <constraint firstItem="6vM-VP-sfo" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="Yte-am-3W5"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="6vM-VP-sfo" secondAttribute="trailing" constant="8" id="g2R-lr-x5k"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Jyg-Do-jtf" secondAttribute="trailing" constant="8" id="iLl-qU-B98"/>
-                            <constraint firstItem="2aM-HB-Bsp" firstAttribute="leading" secondItem="5fz-Oa-fbW" secondAttribute="trailing" constant="8" id="oee-TM-EvG"/>
-                            <constraint firstItem="5fz-Oa-fbW" firstAttribute="width" secondItem="2aM-HB-Bsp" secondAttribute="width" id="pzN-7v-MDh"/>
+                            <constraint firstItem="bBc-F2-L0b" firstAttribute="top" secondItem="6vM-VP-sfo" secondAttribute="bottom" constant="8" id="kh0-5Y-cfe"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="2aM-HB-Bsp" secondAttribute="bottom" constant="8" id="ohc-Ok-grO"/>
                             <constraint firstItem="6vM-VP-sfo" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="qyf-1D-8FD"/>
                             <constraint firstItem="5fz-Oa-fbW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="soO-VL-sso"/>
                             <constraint firstItem="Jyg-Do-jtf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="tWz-CM-YuG"/>
+                            <constraint firstItem="2aM-HB-Bsp" firstAttribute="leading" secondItem="bBc-F2-L0b" secondAttribute="trailing" constant="8" id="uK5-xC-VcN"/>
+                            <constraint firstItem="bBc-F2-L0b" firstAttribute="width" secondItem="5fz-Oa-fbW" secondAttribute="width" id="vAG-LV-6cJ"/>
+                            <constraint firstItem="bBc-F2-L0b" firstAttribute="leading" secondItem="5fz-Oa-fbW" secondAttribute="trailing" constant="8" id="vky-e4-MEg"/>
+                            <constraint firstItem="2aM-HB-Bsp" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" constant="8" id="yhk-VE-w91"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="5fz-Oa-fbW" secondAttribute="bottom" constant="8" id="zPB-Ep-xz4"/>
+                            <constraint firstItem="2aM-HB-Bsp" firstAttribute="top" secondItem="6vM-VP-sfo" secondAttribute="bottom" constant="8" id="zlb-kw-VYk"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -156,6 +168,7 @@
                         <outlet property="containerView" destination="Jyg-Do-jtf" id="uZI-6Y-YLn"/>
                         <outlet property="drawView" destination="6vM-VP-sfo" id="VYC-2q-AzW"/>
                         <outlet property="eraserModeButton" destination="5fz-Oa-fbW" id="YZ6-I1-EV3"/>
+                        <outlet property="textModeButton" destination="bBc-F2-L0b" id="TQw-gA-ERy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

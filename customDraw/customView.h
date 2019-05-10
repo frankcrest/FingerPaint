@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(UIColor*)getColor;
 -(UIColor*)eraserModeOn;
+-(BOOL)delegateTextModeisON;
 
 @end
 
