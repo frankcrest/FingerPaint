@@ -13,6 +13,9 @@
 @property(nonatomic, strong) UIBezierPath* path;
 @property(nonatomic, strong) NSMutableArray* pathArray;
 @property(nonatomic, strong) NSMutableArray* colorArray;
+@property(nonatomic, strong) UIPanGestureRecognizer* panGesture;
+@property(nonatomic,strong) NSMutableArray* velocityArray;
+@property(nonatomic, assign) CGPoint velocity;
 
 @end
 
@@ -34,6 +37,7 @@
         [self setupGestureRecog];
         _pathArray = [[NSMutableArray alloc]init];
         _colorArray = [[NSMutableArray alloc]init];
+        _velocityArray = [[NSMutableArray alloc]init];
     }
     return self;
 }
@@ -42,7 +46,7 @@
     for (int i = 0; i < self.pathArray.count; i++) {
         CGContextRef ctx = UIGraphicsGetCurrentContext();
         CGContextSetStrokeColorWithColor(ctx, [self.colorArray[i]CGColor]);
-        [self.pathArray[i] setLineWidth:10];
+        [self.pathArray[i] setLineWidth: [self.velocityArray[i] floatValue]];
         [self.pathArray[i] stroke];
     }
 }
@@ -50,6 +54,7 @@
 -(void)setupGestureRecog{
     UIPanGestureRecognizer* panGesture = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(addPoint:)];
     [self addGestureRecognizer:panGesture];
+    self.panGesture = panGesture;
 }
 
 -(void)addPoint:(UIPanGestureRecognizer*)sender{
@@ -57,6 +62,8 @@
         self.path = [[UIBezierPath alloc]init];
         [self.path moveToPoint:[sender locationInView:self]];
         [self.pathArray addObject:self.path];
+        CGPoint velocity = [sender velocityInView:self];
+        [self.velocityArray addObject: [NSNumber numberWithFloat: MAX(velocity.x, velocity.y) / 15]];
         if ([self.delegate getColor] == nil) {
             [self.colorArray addObject:[UIColor blackColor]];
         } else{
