@@ -7,8 +7,13 @@
 //
 
 #import "ViewController.h"
+#import "customView.h"
 
-@interface ViewController ()
+@interface ViewController () <getColor>
+
+@property (weak, nonatomic) IBOutlet UIView *containerView;
+@property (weak, nonatomic) IBOutlet customView *drawView;
+@property (nonatomic,strong) UIColor* colorChosen;
 
 @end
 
@@ -16,8 +21,37 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    
+    customView* customDrawView = self.drawView;
+    customDrawView.delegate = self;
+    
+    self.containerView.hidden = YES;
+    UITapGestureRecognizer* tapGestureRecog = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(handleTap:)];
+    [self.containerView addGestureRecognizer:tapGestureRecog];
 }
 
+- (IBAction)changeColor:(UIButton *)sender {
+    self.containerView.hidden = !self.containerView.hidden;
+    if (self.containerView.isHidden) {
+        self.drawView.userInteractionEnabled = YES;
+    } else{
+        self.drawView.userInteractionEnabled = NO;
+
+    }
+}
+
+-(void)handleTap:(UITapGestureRecognizer*)sender{
+    NSLog(@"tapping");
+
+    CGPoint point = [sender locationInView:self.containerView];
+    UIView* tappedView = [self.containerView hitTest:point withEvent:nil];
+    
+    self.colorChosen = tappedView.backgroundColor;
+    NSLog(@"%@", self.colorChosen);
+}
+
+- (UIColor *)getColor{
+    return self.colorChosen ? self.colorChosen : [UIColor blackColor];
+}
 
 @end
