@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol getColor <NSObject>
 
 -(UIColor*)getColor;
+-(UIColor*)eraserModeOn;
 
 @end
 

@@ -14,6 +14,8 @@
 @property (weak, nonatomic) IBOutlet UIView *containerView;
 @property (weak, nonatomic) IBOutlet customView *drawView;
 @property (nonatomic,strong) UIColor* colorChosen;
+@property (weak, nonatomic) IBOutlet UIButton *eraserModeButton;
+@property (nonatomic, assign) BOOL eraseModeisON;
 
 @end
 
@@ -28,6 +30,8 @@
     self.containerView.hidden = YES;
     UITapGestureRecognizer* tapGestureRecog = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(handleTap:)];
     [self.containerView addGestureRecognizer:tapGestureRecog];
+    
+    self.eraseModeisON = NO;
 }
 
 - (IBAction)changeColor:(UIButton *)sender {
@@ -41,17 +45,31 @@
 }
 
 -(void)handleTap:(UITapGestureRecognizer*)sender{
-    NSLog(@"tapping");
-
     CGPoint point = [sender locationInView:self.containerView];
     UIView* tappedView = [self.containerView hitTest:point withEvent:nil];
     
     self.colorChosen = tappedView.backgroundColor;
-    NSLog(@"%@", self.colorChosen);
 }
 
 - (UIColor *)getColor{
     return self.colorChosen ? self.colorChosen : [UIColor blackColor];
+}
+
+- (IBAction)eraseModePressed:(id)sender {
+    self.eraseModeisON = !self.eraseModeisON;
+    if (self.eraseModeisON) {
+        [self.eraserModeButton setTitle:@"Eraser ON" forState:UIControlStateNormal];
+    } else{
+        [self.eraserModeButton setTitle:@"Eraser OFF" forState:UIControlStateNormal];
+    }
+}
+
+-(UIColor *)eraserModeOn{
+    if (self.eraseModeisON) {
+        return [UIColor magentaColor];
+    } else{
+        return nil;
+    }
 }
 
 @end

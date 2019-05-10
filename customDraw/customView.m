@@ -38,6 +38,7 @@
         _pathArray = [[NSMutableArray alloc]init];
         _colorArray = [[NSMutableArray alloc]init];
         _velocityArray = [[NSMutableArray alloc]init];
+        self.backgroundColor = [UIColor magentaColor];
     }
     return self;
 }
@@ -63,17 +64,21 @@
         [self.path moveToPoint:[sender locationInView:self]];
         [self.pathArray addObject:self.path];
         CGPoint velocity = [sender velocityInView:self];
-        [self.velocityArray addObject: [NSNumber numberWithFloat: MAX(velocity.x, velocity.y) / 15]];
-        if ([self.delegate getColor] == nil) {
+        if ([self.delegate getColor] == nil && [self.delegate eraserModeOn] == nil) {
+            [self.velocityArray addObject: [NSNumber numberWithFloat: sqrt(velocity.x*velocity.x + velocity.y*velocity.y) / 20]];
             [self.colorArray addObject:[UIColor blackColor]];
-        } else{
-        [self.colorArray addObject:[self.delegate getColor]];
+        } else if ([self.delegate getColor] != nil && [self.delegate eraserModeOn] == nil){
+            [self.velocityArray addObject: [NSNumber numberWithFloat: sqrt(velocity.x*velocity.x + velocity.y*velocity.y) / 20]];
+            [self.colorArray addObject:[self.delegate getColor]];
+        } else if ([self.delegate eraserModeOn]){
+            [self.velocityArray addObject:[NSNumber numberWithFloat:100]];
+            [self.colorArray addObject:[self.delegate eraserModeOn]];
         }
     } else if (sender.state == UIGestureRecognizerStateChanged){
         [self.path addLineToPoint:[sender locationInView:self]];
         [self setNeedsDisplay];
     } else if (sender.state == UIGestureRecognizerStateEnded){
-
+        
     }
 }
 

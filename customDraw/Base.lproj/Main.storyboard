@@ -20,10 +20,11 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6vM-VP-sfo" customClass="customView">
                                 <rect key="frame" x="8" y="28" width="359" height="593"/>
-                                <color key="backgroundColor" red="1" green="0.88053385419999997" blue="0.98945663549999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="1" green="0.2527923882" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2aM-HB-Bsp">
-                                <rect key="frame" x="0.0" y="629" width="375" height="30"/>
+                                <rect key="frame" x="195.5" y="629" width="179.5" height="30"/>
+                                <color key="backgroundColor" red="1" green="0.88053385419999997" blue="0.98945663549999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Change Color"/>
                                 <connections>
                                     <action selector="changeColor:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uy9-D7-QMI"/>
@@ -122,10 +123,18 @@
                                     <constraint firstAttribute="bottom" secondItem="s21-SP-GUV" secondAttribute="bottom" id="jUf-O8-6k1"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5fz-Oa-fbW">
+                                <rect key="frame" x="8" y="629" width="179.5" height="30"/>
+                                <color key="backgroundColor" red="1" green="0.88053385419999997" blue="0.98945663549999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Eraser OFF"/>
+                                <connections>
+                                    <action selector="eraseModePressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rY8-oG-f5S"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="2aM-HB-Bsp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="0Hq-hY-uIE"/>
+                            <constraint firstItem="5fz-Oa-fbW" firstAttribute="top" secondItem="6vM-VP-sfo" secondAttribute="bottom" constant="8" id="4lW-kN-Bpu"/>
                             <constraint firstItem="Jyg-Do-jtf" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="6QT-3K-8pp"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="2aM-HB-Bsp" secondAttribute="trailing" id="Fgr-hS-oMj"/>
                             <constraint firstItem="2aM-HB-Bsp" firstAttribute="top" secondItem="Jyg-Do-jtf" secondAttribute="bottom" constant="10" id="I64-v7-jQL"/>
@@ -134,14 +143,19 @@
                             <constraint firstItem="6vM-VP-sfo" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="Yte-am-3W5"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="6vM-VP-sfo" secondAttribute="trailing" constant="8" id="g2R-lr-x5k"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Jyg-Do-jtf" secondAttribute="trailing" constant="8" id="iLl-qU-B98"/>
+                            <constraint firstItem="2aM-HB-Bsp" firstAttribute="leading" secondItem="5fz-Oa-fbW" secondAttribute="trailing" constant="8" id="oee-TM-EvG"/>
+                            <constraint firstItem="5fz-Oa-fbW" firstAttribute="width" secondItem="2aM-HB-Bsp" secondAttribute="width" id="pzN-7v-MDh"/>
                             <constraint firstItem="6vM-VP-sfo" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="qyf-1D-8FD"/>
+                            <constraint firstItem="5fz-Oa-fbW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="soO-VL-sso"/>
                             <constraint firstItem="Jyg-Do-jtf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="tWz-CM-YuG"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="5fz-Oa-fbW" secondAttribute="bottom" constant="8" id="zPB-Ep-xz4"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="containerView" destination="Jyg-Do-jtf" id="uZI-6Y-YLn"/>
                         <outlet property="drawView" destination="6vM-VP-sfo" id="VYC-2q-AzW"/>
+                        <outlet property="eraserModeButton" destination="5fz-Oa-fbW" id="YZ6-I1-EV3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
